@@ -11,6 +11,8 @@ function App() {
 
   const [algorithms] = useState(algos);
   const [isCycleSort, setIsCycleSort] = useState(false);
+  const [sortedArray, setSortedArray] = useState([]);
+  const [isSortingCompleted, setIsSortingCompleted] = useState(false);
 
   const handleAPIs = (api) => {
     switch (api) {
@@ -23,10 +25,10 @@ function App() {
     }
   }
 
-  if(isCycleSort) {
+  if(isCycleSort && !isSortingCompleted) {
     return(
       <div>
-        <CycleSort />
+        <CycleSort setSortedArray={setSortedArray} setIsSortingCompleted={setIsSortingCompleted}/>
       </div>
     )
   }
@@ -35,7 +37,7 @@ function App() {
     <div className="App">
       <div>
         {
-          algorithms.map(item => <button onClick={() => handleAPIs(item.api)}>{item.name}</button>)
+          algorithms.map((item, index) => <button key={index} onClick={() => handleAPIs(item.api)}>{item.name}</button>)
         }
       </div>
       
