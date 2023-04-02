@@ -1,66 +1,75 @@
 import React, { useEffect, useState, useRef } from 'react';
 
 function CycleSort() {
-  const [sortedArray, setSortedArray] = useState([]);
-  const controllerRef = useRef(null);
-  const previousSortedArrayRef = useRef([]);
-  const [numberOfUpdates, setNumberOfUpdates] = useState(0);
+  const [arr, setArr] = useState([]);
+  const controllerRef = React.useRef(null);
+  const prevArrRef = useRef([]);
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     controllerRef.current = new AbortController();
-    const eventSource = new EventSource("http://localhost:8080/cycleSort");
+    // const eventSource = new EventSource("http://localhost:8080/cycleSort");
+    let arr = [5,3,1,2,4]
+    const eventSource = new EventSource(`http://localhost:8080/cycleSort?arr=${arr.toLocaleString()}`);
+
     eventSource.onmessage = (event) => {
+      console.log(event)
       if (event.data === 'completed') {
+        // setIsSortingCompleted(true);
         controllerRef.current.abort();
         eventSource.close();
       } else {
         const data = JSON.parse(event.data);
-        const previousSortedArray = previousSortedArrayRef.current;
-        const changedIndexes = findChangedIndexes(previousSortedArray, data);
-        setSortedArray(data);
-        setNumberOfUpdates(count => count + 1);
+      const prevArr = prevArrRef.current;
+      const changedIndexes = findChangedIndexes(prevArr, data);
+        setArr(data);
+        setCount(count => count++)
         if (changedIndexes) {
-          const [firstChangedIndex, secondChangedIndex] = changedIndexes;
-          const firstChangedElement = document.querySelector(`.grid > span:nth-child(${firstChangedIndex + 1})`);
-          const secondChangedElement = document.querySelector(`.grid > span:nth-child(${secondChangedIndex + 1})`);
-          if (firstChangedElement && secondChangedElement) {
-            firstChangedElement.classList.add('changed');
-            secondChangedElement.classList.add('changed');
+          const [index1, index2] = changedIndexes;
+          const element1 = document.querySelector(`.grid > span:nth-child(${index1 + 1})`);
+          const element2 = document.querySelector(`.grid > span:nth-child(${index2 + 1})`);
+          if (element1 && element2) {
+            element1.classList.add('changed');
+            element2.classList.add('changed');
             setTimeout(() => {
-              firstChangedElement.classList.remove('changed');
-              secondChangedElement.classList.remove('changed');
+              element1.classList.remove('changed');
+              element2.classList.remove('changed');
             }, 1000); // remove highlight after 1 second
           }
         }
-        previousSortedArrayRef.current = data;
+        prevArrRef.current = data;
       }
+    
     };
+
     return () => {
       controllerRef.current.abort();
       eventSource.close();
     };
   }, []);
 
-  useEffect(() => {
-    console.log(numberOfUpdates);
-  }, [sortedArray]);
 
-  function findChangedIndexes(firstArray, secondArray) {
-    const minLength = Math.min(firstArray.length, secondArray.length);
-    let firstChangedIndex = -1;
-    let secondChangedIndex = -1;
-    for (let i = 0; i < minLength; i++) {
-      if (firstArray[i] !== secondArray[i]) {
-        if (firstChangedIndex === -1) {
-          firstChangedIndex = i;
-        } else if (secondChangedIndex === -1) {
-          secondChangedIndex = i;
+  useEffect(() => {
+    console.log(count)
+    // console.log(arr)
+  },[])
+
+  function findChangedIndexes(arr1, arr2) {
+    const len = Math.min(arr1.length, arr2.length);
+    let index1 = -1;
+    let index2 = -1;
+    for (let i = 0; i < len; i++) {
+      if (arr1[i] !== arr2[i]) {
+        if (index1 === -1) {
+          index1 = i;
+        } else if (index2 === -1) {
+          index2 = i;
           break;
         }
       }
     }
-    if (firstChangedIndex !== -1 && secondChangedIndex !== -1) {
-      return [firstChangedIndex, secondChangedIndex];
+    if (index1 !== -1 && index2 !== -1) {
+      return [index1, index2];
     }
     return null;
   }
@@ -69,8 +78,8 @@ function CycleSort() {
     <>
       <h1 style={{textAlign:'center'}}>Cycle Sort </h1>
       <div className='grid'>
-        {sortedArray.length && sortedArray.map((value, index) => (
-          <span key={index}>{value} </span>
+        {arr.length && arr.map((val, index) => (
+          <span key={index}>{val} </span>
         ))}
       </div>
     </>
