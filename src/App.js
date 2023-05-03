@@ -24,7 +24,7 @@ function App() {
 
   if(isCycleSort && !isSortingCompleted) {
     return(
-      <div>
+      <div className='sortApp'>
         <SortAlgo setIsSortingCompleted={setIsSortingCompleted} sortAPI={sortAPI} algoName={algoName}/>
       </div>
     )
@@ -32,12 +32,10 @@ function App() {
 
   return (
     <div className="App">
-      <div>
         {
           algorithms.map((item, index) => <button key={index} onClick={() => handleAPIs(item.api, item.name)}>{item.name}</button>)
         }
-      </div>
-      
+
     </div>
   );
 }
