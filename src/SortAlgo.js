@@ -2,22 +2,25 @@ import React, { useEffect, useState, useRef } from "react";
 import { findChangedIndexes } from "./utils";
 import DynamicLine from "./DynamicLine";
 
-function SortAlgo({ sortAPI, algoName }) {
-  const [arr, setArr] = useState([]);
+function SortAlgo({ sortAPI, algoName, setIsSortingCompleted, inputArray }) {
+  const [arr, setArr] = useState(inputArray);
+  const [inputValue, setInputValue] = useState('');
+  const [input, setInputArr] = useState([]);
   const controllerRef = React.useRef(null);
-  const prevArrRef = useRef([]);
+  const prevArrRef = useRef(arr);
   const [changedIndexes, setChangedIndexes] = useState(null);
 
   useEffect(() => {
     controllerRef.current = new AbortController();
-    let payload = [5, 3, 1, 2, 4];
+    // let payload = [5, 3, 1, 2, 4];
+    let payload = inputArray;
     // let payload = [3,5,2,1,4];
     const eventSource = new EventSource(
       `http://localhost:8080/${sortAPI}?arr=${payload.toLocaleString()}`
     );
 
     eventSource.onmessage = (event) => {
-      console.log(event);
+      console.log(event)
       if (event.data === "completed") {
         controllerRef.current.abort();
         eventSource.close();
@@ -47,7 +50,7 @@ function SortAlgo({ sortAPI, algoName }) {
       <h1>{algoName}</h1>
       <div className="sortParent">
         <div className="arrays">
-          {arr.length &&
+          {arr.length > 0 &&
             arr.map((val, index) => (
               <span key={index} id={index} className={(index === changedIndexes?.[0] || index === changedIndexes?.[1]) ? "highlight" : ""}>
                 {val}
