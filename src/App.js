@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 import SortAlgo from "./SortAlgo";
-import {algoDescriptions} from './data'
 
 function App() {
   const algos = [
@@ -9,6 +8,8 @@ function App() {
     { api: "insertionSort", name: "Insertion Sort" },
     { api: "selectionSort", name: "Selection Sort" },
     { api: "bubbleSort", name: "Bubble Sort" },
+    { api: "quickSort", name: "Quick Sort" }
+
   ];
 
     const inputRef = useRef(null);
