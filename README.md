@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Sorting Algorithms Simulations
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains a web application that visualizes various sorting algorithms. It allows you to enter an integer array and observe the step-by-step sorting process in real-time.
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+1. Clone the repository to your local machine.
+2. Navigate to the project directory.
+3. Install the required dependencies by running the command: `npm install`.
 
-### `npm start`
+## Usage
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Run the application with the command: `npm start`.
+2. Open your web browser and visit `http://localhost:3000`.
+3. Enter an integer array in the input field provided.
+4. Click on the sorting algorithm buttons to visualize the sorting process.
+5. Observe the changes in the array elements as the algorithm progresses.
+6. The visualization will stop once the sorting is completed.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Available Sorting Algorithms
 
-### `npm test`
+The following sorting algorithms are available in this application:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Cycle Sort
+- Insertion Sort
+- Selection Sort
+- Bubble Sort
+- Quick Sort
 
-### `npm run build`
+## How It Works
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- The input array is displayed on the screen, with each element represented by a number.
+- When a sorting algorithm is selected, the application communicates with a backend server to perform the sorting.
+- The server sends periodic updates about the current state of the array.
+- The application updates the displayed array to reflect the changes and highlights the elements that are being swapped or compared.
+- Once the sorting is complete, the visualization stops, and the final sorted array is displayed.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Contributing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you want to contribute to this project, you can follow these steps:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make the necessary changes and commit them.
+4. Push your changes to your forked repository.
+5. Submit a pull request, describing the changes you made.
