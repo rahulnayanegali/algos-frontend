@@ -83,18 +83,23 @@ function App() {
           />
         </div>
       </header>
-      <div className="App">
-        <div className="buttons-container">
-          {algorithms.map((item, index) => (
-            <button key={index} onClick={() => handleAPIs(item.api, item.name)}>
-              {item.name}
-            </button>
-          ))}
-        </div>
-        {!isSortingCompleted && <Algorithms/>}
-        {!isSortingCompleted && <Descriptions />}
-
+      <div className="buttons-container">
+        {algorithms.map((item, index) => (
+          <button key={index} onClick={() => handleAPIs(item.api, item.name)}>
+            {item.name}
+          </button>
+        ))}
       </div>
+      {/* <div className="App"> */}
+      <div className="row">
+        <div className="column">
+        {!isSortingCompleted && <Algorithms/>}
+        </div>
+        <div className="column">
+        {!isSortingCompleted && <Descriptions sortAPI={sortAPI}/>}
+        </div>
+      </div>
+      {/* </div> */}
     </>
   );
 }
