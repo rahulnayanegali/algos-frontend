@@ -4,8 +4,6 @@ import DynamicLine from "./DynamicLine";
 
 function SortAlgo({ sortAPI, algoName, setIsSortingCompleted, inputArray }) {
   const [arr, setArr] = useState(inputArray);
-  const [inputValue, setInputValue] = useState('');
-  const [input, setInputArr] = useState([]);
   const controllerRef = React.useRef(null);
   const prevArrRef = useRef(arr);
   const [changedIndexes, setChangedIndexes] = useState(null);

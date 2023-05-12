@@ -122,13 +122,13 @@ button:active {
 
 .input-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row; /* Change flex-direction to row */
   align-items: center;
   margin-top: 10px;
 }
 
 label {
-  margin-bottom: 5px;
+  margin-right: 5px; /* Add margin-right to create spacing between label and input */
   font-size: 18px;
 }
 
@@ -137,10 +137,10 @@ input {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 200px;
-  max-width: 100%;
+  flex-grow: 1; /* Add flex-grow to allow the input to expand */
   transition: border-color 0.3s ease-in-out;
 }
+
 
 input.error {
   border-color: red;
@@ -149,4 +149,17 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.description {
+  flex-grow: 1;
+  margin-top: 10px;
+  max-width: 50%; /* Add max-width to limit the width of the element */
+}
+
+
+.description p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #333;
 }

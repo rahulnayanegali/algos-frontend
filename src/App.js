@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./App.css";
 import SortAlgo from "./SortAlgo";
+import {algoDescription} from './algoDescription';
+import Descriptions from "./Descriptions";
+
 
 function App() {
   const algos = [
@@ -89,6 +92,8 @@ function App() {
           ))}
         </div>
         {!isSortingCompleted && <Algorithms/>}
+        {!isSortingCompleted && <Descriptions />}
+
       </div>
     </>
   );
